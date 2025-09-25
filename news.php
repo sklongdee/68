@@ -26,7 +26,7 @@
                     <h5 class="card-title"><?=$row_news["news_title"]?></h5>
                 </div>
                 <div class="card-footer">
-                    <small class="text-body-secondary">Last updated 3 mins ago</small>
+                    <small class="text-body-secondary">Last updated <?=$row_news["news_date"]?></small>
                 </div>
                 </div>
             </div>
