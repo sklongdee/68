@@ -9,11 +9,16 @@
         VALUES (:news_title, :news_detail, :news_type)
     ");
 
-    $stmt->execute([
-        ':news_title' => $news_title,
-        ':news_detail'  => $news_detail,
-        ':news_type'     => $news_type,
+    $success = $stmt->execute([
+        ':news_title'  => $news_title,
+        ':news_detail' => $news_detail,
+        ':news_type'   => $news_type,
     ]);
+    if ($success) {
+        header("Location: ./?id=news");
+        exit;
+    } else {
+        echo "เกิดข้อผิดพลาด: ไม่สามารถเพิ่มข้อมูลได้";
+    }
 
-    header('Location: ./?id=news');
 ?>
