@@ -99,10 +99,20 @@
         <div class="mb-3">
             <label for="news_type" class="form-label">ประเภทข่าว</label>
             <select class="form-select" name="news_type" id="news_type" aria-label="Default select example">
-                <option selected>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+                <option selected>เลือกประเภทข่าว</option>
+
+                <?php
+                    $sql_type = "SELECT * FROM news_type";
+                    $stmt_type = $conn->prepare($sql_type);
+                    $stmt_type->execute();
+                    $result_type = $stmt_type->fetchAll(PDO::FETCH_ASSOC);
+                    foreach ($result_type as $row_type) {
+                        echo '<option value="'.$row_type["news_type_id"].'">'
+                                .$row_type["news_type_name"].'</option>';
+                    }
+                ?>
+
+
             </select>
         </div>
       </div>
