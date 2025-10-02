@@ -147,7 +147,7 @@
 <div class="modal fade" id="editNewsModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <form action="update_news.php" method="POST" enctype="multipart/form-data" id="editNewsForm">
+      <form action="update_news_verify.php" method="POST" enctype="multipart/form-data" id="editNewsForm">
         <input type="hidden" name="news_id" id="modal_news_id">
         <div class="modal-header">
           <h5 class="modal-title">แก้ไขข่าว</h5>
