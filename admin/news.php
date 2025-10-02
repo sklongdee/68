@@ -59,7 +59,10 @@
                                 }
                                 ?> 
                             </td>
-                            <td>แก้ไข ลบ</td>
+                            <td>
+                                แก้ไข 
+                                <a href="delete_news.php?news_id=<?=$row_news["news_id"]?>&news_img=<?=$row_news["news_img"]?>">ลบ</a>
+                            </td>
                         </tr>   
                         <?php
                             }
