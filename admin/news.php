@@ -54,11 +54,12 @@
                                 <?php
                                 if($row_news["news_status"]==1){
                                     echo '<a class="text-decoration-none link-dark"
-                                     href="update_status_verify.php?news_id='.$row_news["news_status"].'">
+                                     href="update_status_verify.php?news_id='.$row_news["news_id"].'&status=0">
                                      เปิด</a>';
                                 }else{
                                     echo '<a class="text-decoration-none link-dark"
-                                     href="update_status_verify.php">ปิด</a>';
+                                     href="update_status_verify.php?news_id='.$row_news["news_id"].'&status=1">
+                                     ปิด</a>';
                                 }
                                 ?> 
                             </td>
