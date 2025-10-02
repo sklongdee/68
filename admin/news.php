@@ -60,8 +60,17 @@
                                 ?> 
                             </td>
                             <td>
-                                แก้ไข 
-                                <a href="delete_news.php?news_id=<?=$row_news["news_id"]?>&news_img=<?=$row_news["news_img"]?>">ลบ</a>
+                                <a type="button" 
+                                    data-bs-toggle="modal" data-bs-target="#editNewsModal"
+                                    data-news_id="<?=$row_news["news_id"]?>"
+                                    data-news_title="<?=$row_news["news_title"]?>"
+                                    data-news_detail="<?=$row_news["news_detail"]?>"
+                                    data-news_type="<?=$row_news["news_type"]?>"
+                                    data-news_img="<?=$row_news["news_img"]?>"
+                                >
+                                    แก้ไข
+                                </a>
+                                <a class="text-decoration-none link-dark" href="delete_news.php?news_id=<?=$row_news["news_id"]?>&news_img=<?=$row_news["news_img"]?>">ลบ</a>
                             </td>
                         </tr>   
                         <?php
@@ -109,6 +118,7 @@
                 <option selected>เลือกประเภทข่าว</option>
 
                 <?php
+                    include_once "conn.php";
                     $sql_type = "SELECT * FROM news_type";
                     $stmt_type = $conn->prepare($sql_type);
                     $stmt_type->execute();
@@ -131,3 +141,84 @@
     </div>
   </div>
 </div>
+
+
+<!-- Modal แก้ไขข่าวสาร -->
+<div class="modal fade" id="editNewsModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form action="update_news.php" method="POST" enctype="multipart/form-data" id="editNewsForm">
+        <input type="hidden" name="news_id" id="modal_news_id">
+        <div class="modal-header">
+          <h5 class="modal-title">แก้ไขข่าว</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="modal_news_title" class="form-label">หัวข้อข่าว</label>
+            <input type="text" class="form-control" name="news_title" id="modal_news_title">
+          </div>
+          <div class="mb-3">
+            <label for="modal_news_detail" class="form-label">รายละเอียดข่าว</label>
+            <textarea class="form-control" name="news_detail" id="modal_news_detail"></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="modal_news_img" class="form-label">ภาพข่าว (ถ้าไม่เปลี่ยนให้เว้นว่าง)</label>
+            <input class="form-control" type="file" name="news_img" id="modal_news_img">
+            <img src="" alt="ภาพข่าวเก่า" id="modal_news_img_preview" style="max-width: 150px; margin-top: 10px; display: none;">
+          </div>
+          <div class="mb-3">
+            <label for="modal_news_type" class="form-label">ประเภทข่าว</label>
+            <select class="form-select" name="news_type" id="modal_news_type">
+                <option value="">เลือกประเภทข่าว</option>
+                <?php
+                    $sql_type = "SELECT * FROM news_type";
+                    $stmt_type = $conn->prepare($sql_type);
+                    $stmt_type->execute();
+                    $result_type = $stmt_type->fetchAll(PDO::FETCH_ASSOC);
+                    foreach ($result_type as $row_type) {
+                        echo '<option value="'.$row_type["news_type_id"].'">'
+                                .htmlspecialchars($row_type["news_type_name"]).'</option>';
+                    }
+                ?>
+                </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+          <button type="submit" class="btn btn-primary">บันทึกการแก้ไข</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<script>
+    const editNewsModal = document.getElementById('editNewsModal');
+    editNewsModal.addEventListener('show.bs.modal', event => {
+  const button = event.relatedTarget; // ปุ่มที่เปิด modal
+  const newsId = button.getAttribute('data-news_id');
+  const newsTitle = button.getAttribute('data-news_title');
+  const newsDetail = button.getAttribute('data-news_detail');
+  const newsType = button.getAttribute('data-news_type');
+  const newsImg = button.getAttribute('data-news_img');
+
+  // กำหนดค่าในฟอร์ม modal
+  editNewsModal.querySelector('#modal_news_id').value = newsId;
+  editNewsModal.querySelector('#modal_news_title').value = newsTitle;
+  editNewsModal.querySelector('#modal_news_detail').value = newsDetail;
+  editNewsModal.querySelector('#modal_news_type').value = newsType;
+
+  // แสดงภาพเก่า ถ้ามี
+  const imgPreview = editNewsModal.querySelector('#modal_news_img_preview');
+  if (newsImg) {
+    imgPreview.src = '../news/' + newsImg;
+    imgPreview.style.display = 'block';
+  } else {
+    imgPreview.style.display = 'none';
+  }
+
+  // เคลียร์ input file
+  editNewsModal.querySelector('#modal_news_img').value = '';
+});
+
+</script>
