@@ -53,9 +53,12 @@
                             <td>
                                 <?php
                                 if($row_news["news_status"]==1){
-                                    echo "เปิด";
+                                    echo '<a class="text-decoration-none link-dark"
+                                     href="update_status_verify.php?news_id='.$row_news["news_status"].'">
+                                     เปิด</a>';
                                 }else{
-                                    echo "ปิด";
+                                    echo '<a class="text-decoration-none link-dark"
+                                     href="update_status_verify.php">ปิด</a>';
                                 }
                                 ?> 
                             </td>
