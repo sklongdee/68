@@ -195,30 +195,30 @@
 <script>
     const editNewsModal = document.getElementById('editNewsModal');
     editNewsModal.addEventListener('show.bs.modal', event => {
-  const button = event.relatedTarget; // ปุ่มที่เปิด modal
-  const newsId = button.getAttribute('data-news_id');
-  const newsTitle = button.getAttribute('data-news_title');
-  const newsDetail = button.getAttribute('data-news_detail');
-  const newsType = button.getAttribute('data-news_type');
-  const newsImg = button.getAttribute('data-news_img');
+    const button = event.relatedTarget; // ปุ่มที่เปิด modal
+    const newsId = button.getAttribute('data-news_id');
+    const newsTitle = button.getAttribute('data-news_title');
+    const newsDetail = button.getAttribute('data-news_detail');
+    const newsType = button.getAttribute('data-news_type');
+    const newsImg = button.getAttribute('data-news_img');
 
-  // กำหนดค่าในฟอร์ม modal
-  editNewsModal.querySelector('#modal_news_id').value = newsId;
-  editNewsModal.querySelector('#modal_news_title').value = newsTitle;
-  editNewsModal.querySelector('#modal_news_detail').value = newsDetail;
-  editNewsModal.querySelector('#modal_news_type').value = newsType;
+    // กำหนดค่าในฟอร์ม modal
+    editNewsModal.querySelector('#modal_news_id').value = newsId;
+    editNewsModal.querySelector('#modal_news_title').value = newsTitle;
+    editNewsModal.querySelector('#modal_news_detail').value = newsDetail;
+    editNewsModal.querySelector('#modal_news_type').value = newsType;
 
-  // แสดงภาพเก่า ถ้ามี
-  const imgPreview = editNewsModal.querySelector('#modal_news_img_preview');
-  if (newsImg) {
-    imgPreview.src = '../news/' + newsImg;
-    imgPreview.style.display = 'block';
-  } else {
-    imgPreview.style.display = 'none';
-  }
+    // แสดงภาพเก่า ถ้ามี
+    const imgPreview = editNewsModal.querySelector('#modal_news_img_preview');
+    if (newsImg) {
+        imgPreview.src = '../news/' + newsImg;
+        imgPreview.style.display = 'block';
+    } else {
+        imgPreview.style.display = 'none';
+    }
 
-  // เคลียร์ input file
-  editNewsModal.querySelector('#modal_news_img').value = '';
-});
+    // เคลียร์ input file
+    editNewsModal.querySelector('#modal_news_img').value = '';
+    });
 
 </script>
