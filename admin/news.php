@@ -87,7 +87,7 @@
       <div class="modal-body">
         
 
-      <form action=add_news_verify.php method="POST">
+      <form action=add_news_verify.php method="POST" enctype="multipart/form-data">
         <div class="mb-3">
             <label for="news_title" class="form-label">หัวข้อข่าว</label>
             <input type="text" class="form-control" name="news_title" id="news_title" aria-describedby="หัวข้อข่าว">
@@ -95,6 +95,10 @@
         <div class="mb-3">
             <label for="news_detail" class="form-label">รายละเอียดข่าว</label>
             <textarea class="form-control" name="news_detail" id="news_detail"></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="news_img" class="form-label">ภาพข่าว</label>
+            <input class="form-control" type="file" name="news_img" id="news_img">
         </div>
         <div class="mb-3">
             <label for="news_type" class="form-label">ประเภทข่าว</label>
