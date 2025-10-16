@@ -47,7 +47,7 @@
                             <td>
                                 <img src="../news/<?=$row_news["news_img"]?>" width="40" height="auto"/>
                             </td>
-                            <td><?=$row_news["news_title"]?></td>
+                            <td><a href="?id=news_detail&news_id=<?=$row_news["news_id"]?>"><?=$row_news["news_title"]?></a></td>
                             <td><?=$row_news["news_type_name"]?></td>
                             <td><?=$row_news["news_date"]?></td>
                             <td>

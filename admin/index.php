@@ -115,6 +115,8 @@
                             include "slite.php";
                         }elseif($id=='news'){
                             include "news.php";
+                        }elseif($id=='news_detail'){
+                            include "news_detail.php";
                         }else{
                             include "dashboard.php";
                         }
