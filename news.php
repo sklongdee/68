@@ -21,10 +21,12 @@
             ?>
             <div class="col">
                 <div class="card h-100">
+                <a href="?page=news_detail&news_id=<?=$row_news["news_id"]?>">   
                 <img src="news/<?=$row_news["news_img"]?>" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title"><?=$row_news["news_title"]?></h5>
                 </div>
+                </a>
                 <div class="card-footer">
                     <small class="text-body-secondary">Last updated <?=$row_news["news_date"]?></small>
                 </div>

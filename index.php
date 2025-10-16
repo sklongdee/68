@@ -70,6 +70,8 @@
         include "about.php";
     }elseif($page=="contact"){
         include "contact.php";
+    }elseif($page=="news_detail"){
+        include "news_detail.php";
     }else{
         include "home.php";
     }
